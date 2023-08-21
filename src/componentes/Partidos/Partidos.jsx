@@ -49,13 +49,13 @@ function Partidos() {
         <div className="flex justify-evenly gap-10 mt-10 mb-5">
           <input
             type="text"
-            className="shadow shadow-gray-500 h-10  rounded-md p-2 text-[#37B6FF] border-none"
+            className="shadow shadow-gray-500 w-56 h-10  rounded-md p-2 text-[#37B6FF] border-none"
             placeholder="Manchester City"
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
           />
 
-          <button className="bg-[#37B6FF] p-2 rounded-lg font-semibold text-white hover:bg-[#0f679a]" onClick={() => filterPartidos(searchInput)}>Buscar</button>
+          <button className="bg-[#37B6FF] w-20 p-2 rounded-lg font-semibold text-white hover:bg-[#0f679a]" onClick={() => filterPartidos(searchInput)}>Buscar</button>
         </div>
 
         <div>

@@ -29,10 +29,12 @@ function PartidosJugados() {
   return (
     <>
       <div className="mr-5 ml-5">
+        {/* SLIDER  */}
       <div className="mt-5">
         <SliderBtn />
       </div>
 
+      {/* BUTTON ARROW */}
       <div className="flex justify-evenly items-center mt-10 ">
         <Link to={"/inicio"}>
           <button className="mr-5 bg-[#37B6FF] p-2 rounded-lg shadow-md shadow-gray-400 hover:bg-[#0d6aa0]">
@@ -45,8 +47,10 @@ function PartidosJugados() {
         </h1>
       </div>
 
+      {/* LIGA EN LA ESTA EL USUARIO  */}
       <h1 className="text-center mt-2 font-semibold text-xl">{partidosJugados.length > 0 && partidosJugados[0].league.name}</h1>
 
+      {/* BUSCADOR  */}
       <div className="flex justify-evenly gap-10 mt-10 mb-5">
         <input
           type="text"
@@ -65,6 +69,7 @@ function PartidosJugados() {
       </div>
 
       <div>
+        {/* LOADING DE CARGA  */}
         {loading ? (
           <div className="m-auto flex justify-center items-center mt-40">
             <div className="lds-spinner">
@@ -76,6 +81,7 @@ function PartidosJugados() {
             </div>
           </div>
         ) : (
+            // MUESTRA LOS RESULTADOS 
           <div className="flex-col justify-center items-center m-2">
             {(filtroPartido.length > 0 ? filtroPartido : partidosJugados).map(
               (partido) => (
