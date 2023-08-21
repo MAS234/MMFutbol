@@ -7,30 +7,42 @@ const PartidosContext = createContext();
 const PartidosProvider = ({ children }) => {
 
     const [partidos, setPartidos] = useState([]);
+    
+    const [seleccionLeague, setSeleccionLeague] = useState(39);
+
+    const [loading, setLoading] = useState(true);
 
 useEffect(() => {
 
     const partidosData = async () =>{
 
-        try{
-            const respuesta = await axios.get(
-                "https://v3.football.api-sports.io/fixtures?league=39&season=2023",
+        try {
+            if (seleccionLeague !== null) {
+              const respuesta = await axios.get(
+                `https://v3.football.api-sports.io/fixtures?league=${seleccionLeague}&season=2023`,
                 {
-                    headers: {
-                        "x-apisports-key": "b83f5a413036c3f8de516083d89c9fcc"
-                    }
+                  headers: {
+                    "x-apisports-key": "b83f5a413036c3f8de516083d89c9fcc"
+                  }
                 }
-            );
-            setPartidos(respuesta.data.response)
-        }catch (error){
-            console.log("Error al obtener los partidos")
-        }
+              );
+              setPartidos(respuesta.data.response);
+              setLoading(false);
+            }
+          } catch (error) {
+            console.log("Error al obtener los partidos");
+            setLoading(false);
+          }
         
     }
 
     partidosData();
 
-}, []);
+}, [seleccionLeague]);
+
+const SeleccionDeLiga = (id) => {
+    setSeleccionLeague(id);
+}
 
 
 console.log(partidos)
@@ -38,7 +50,9 @@ console.log(partidos)
   return (
     <PartidosContext.Provider
     value={{
-        partidos
+        partidos,
+        SeleccionDeLiga,
+        loading
     }}
     >
      {children}
