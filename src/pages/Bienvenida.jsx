@@ -24,11 +24,21 @@ function Bienvenida() {
 
         </div>
 
+        <div className="flex justify-evenly items-center gap-8">
         <Link to={"/inicio"}>
         <button className="mt-28 text-white text-2xl bg-[#37b6ff00] border p-3 rounded-lg hover:bg-[#37b6ff] duration-200" >
-          Avanzar 
+          Ingresar 
         </button>
         </Link>
+
+        <Link to={"/registro"}>
+        <button className="mt-28 text-white text-2xl bg-[#37b6ff00] border p-3 rounded-lg hover:bg-[#37b6ff] duration-200" >
+          Registrarse 
+        </button>
+        </Link>
+        </div>
+
+
 
 
       </div>

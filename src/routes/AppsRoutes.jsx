@@ -1,8 +1,11 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Bienvenida from "../componentes/Bienvenida";
-import Inicio from "../componentes/Inicio";
-import Partidos from "../componentes/Partidos/Partidos";
-import PartidosJugados from "../componentes/PartidosJugados/PartidosJugados";
+import Bienvenida from "../pages/Bienvenida";
+import Inicio from "../pages/Inicio";
+import Partidos from "../pages/Partidos/Partidos";
+import PartidosJugados from "../pages/PartidosJugados/PartidosJugados";
+import PantallaError from "../pages/Error/PantallaError";
+import DetallesDelPartido from "../pages/DetallesPartido/DetallesDelPartido";
+import Registrarse from "../pages/Registro/Registrarse";
 
 export default function AppsRoutes() {
   return (
@@ -11,10 +14,18 @@ export default function AppsRoutes() {
       <Router>
         <Routes>
             <Route path="/" element={<Bienvenida/>}/>
+            <Route path="/registro" element={<Registrarse/>}/>
+            
 
+            
             <Route path="/inicio" element={<Inicio/>}/>
             <Route path="/partidos" element={<Partidos/>}/>
             <Route path="/jugados" element={<PartidosJugados/>}/>
+            <Route path="/detalles/:id" element={<DetallesDelPartido/>}/>
+
+            {/* Error  */}
+            <Route path="*" element={<PantallaError/>}/>
+
         </Routes>
       </Router>
 

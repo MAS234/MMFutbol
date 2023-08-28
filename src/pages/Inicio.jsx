@@ -1,6 +1,6 @@
-import SliderBtn from "./Swiper/SliderBtn";
+import SliderBtn from "../componentes/Swiper/SliderBtn";
 import InicioPartidos from "./PartidosInicio/InicioPartidos";
-import Navbar from "./NavbarMenu/Navbar";
+import Navbar from "../componentes/NavbarMenu/Navbar";
 
 function Inicio() {
 

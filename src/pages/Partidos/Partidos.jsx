@@ -2,8 +2,8 @@ import  { useState } from "react";
 import { AiOutlineArrowLeft } from "react-icons/ai";
 import UsePartidos from "../../hooks/UsePartidos";
 import { Link } from "react-router-dom";
-import SliderBtn from "../Swiper/SliderBtn";
-import Navbar from "../NavbarMenu/Navbar";
+import SliderBtn from "../../componentes/Swiper/SliderBtn";
+import Navbar from "../../componentes/NavbarMenu/Navbar";
 
 function Partidos() {
   const { loading, partidos } = UsePartidos();
@@ -22,6 +22,12 @@ function Partidos() {
         partido.teams.home.name.toLowerCase().includes(teamName.toLowerCase()) ||
         partido.teams.away.name.toLowerCase().includes(teamName.toLowerCase())
     );
+
+      // Ordenar los partidos por fecha
+      filtered.sort((partidoA, partidoB) =>
+      new Date(partidoA.fixture.date) - new Date(partidoB.fixture.date)
+    );
+
     setFilteredPartidos(filtered);
   };
 
@@ -73,9 +79,10 @@ function Partidos() {
             <div className="flex-col justify-center items-center m-2">
               {(filteredPartidos.length > 0 ? filteredPartidos : partidosPorJugar).map(
                 (partido) => (
-                  <div
+                  <Link
+                  to={`/inicio`}
                     key={partido.fixture.id}
-                    className="p-5  text-white w-[100%] shadow-lg shadow-gray-500 bg-white mt-5 mb-5 rounded-lg flex justify-between items-center"
+                    className="p-5  fondoGradienteCards  text-gray-500 hover:text-white w-[100%] shadow-lg shadow-gray-500 bg-white mt-5 mb-5 rounded-lg flex justify-between items-center"
                   >
                     <div className="flex-col  items-center justify-center w-20">
                       <img
@@ -83,16 +90,16 @@ function Partidos() {
                         alt={partido.teams.home.name}
                         className="w-8 m-auto"
                       />
-                      <p className="text-gray-500 font-semibold text-sm ml-2 text-center">
+                      <p className=" font-semibold text-sm ml-2 text-center">
                         {partido.teams.home.name}
                       </p>
                     </div>
 
                     <div className="flex flex-col items-center p-3">
-                      <p className="text-gray-500 font-semibold text-center text-xs">
+                      <p className=" font-semibold text-center text-xs">
                         {new Date(partido.fixture.date).toLocaleDateString()}
                       </p>
-                      <p className="text-gray-500 font-semibold text-center text-xs">
+                      <p className=" font-semibold text-center text-xs">
                         {new Date(partido.fixture.date)
                           .toLocaleTimeString()
                           .slice(0, -3)}
@@ -105,11 +112,11 @@ function Partidos() {
                         alt={partido.teams.away.name}
                         className="w-8 m-auto"
                       />
-                      <p className="text-gray-500 font-semibold text-xs mr-2 text-center">
+                      <p className=" font-semibold text-xs mr-2 text-center">
                         {partido.teams.away.name}
                       </p>
                     </div>
-                  </div>
+                  </Link>
                 )
               )}
             </div>
