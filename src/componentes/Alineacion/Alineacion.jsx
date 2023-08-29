@@ -1,40 +1,99 @@
-import "./alineacion.css";
-// import PropTypes from "prop-types";
+import "./alineacion.css"; // Importa tu archivo CSS
+import PropTypes from "prop-types";
 
-function Alineacion( alineaciones ) {
+function Alineacion({
+  alineacionLocal,
+  alineacionVisitante,
+  alineacionNumeroV,
+  alineacionNumeroL,
+}) {
+  console.log("local", alineacionLocal, alineacionNumeroL);
+  console.log("visitante", alineacionVisitante, alineacionNumeroV);
 
-  console.log("alineaciones",alineaciones)
-  
   return (
-    <div className="flex justify-center items-center">
-      <div className="campo w-96 h-72 rounded-lg">
+    <div className="campo shadow-lg w-full shadow-gray-700 flex justify-between items-center">
+      <div>
+        <h1 className="volterarAlineacion text-center text-white font-semibold text-xl">
+          {alineacionNumeroL}
+        </h1>
 
-        {/* locales  */}
-        <div>
-        {alineaciones.alineacionLocal.map((jugador, index) => (
+        <div className="campoLocal">
+          {alineacionLocal.map((jugador, index) => {
+            const [fila, columna] = jugador.player.grid.split(":");
+            return (
+              <div
+                key={index}
+                className="jugador-local shadow-lg shadow-gray-700"
+                style={{
+                  gridColumn: columna,
+                  gridRow: fila,
+                }}
+              ></div>
+            );
+          })}
+        </div>
+      </div>
+
+      <div>
+
+        <h1 className="text-center text-white font-semibold text-xl">{alineacionNumeroV}</h1>
+
+      <div className="campoVisitante">
+        {alineacionVisitante.map((jugador, index) => {
+          const [fila, columna] = jugador.player.grid.split(":");
+          return (
             <div
               key={index}
-              className={`jugador-local jugador-local-${index + 1}`}
+              className="jugador-visitante shadow-lg shadow-gray-700"
               style={{
-                gridColumn: jugador.player.grid.split(":")[1], // Columna
-                gridRow: jugador.player.grid.split(":")[0], 
+                gridColumn: columna,
+                gridRow: fila,
               }}
-            >
-              {jugador.player.name}
-            </div>
-          ))}
-        </div>
-
-        {/* visitante  */}
-        <div>
-
-        </div>
+            ></div>
+          );
+        })}
+      </div>
 
       </div>
+
+
     </div>
   );
 }
 
-
+Alineacion.propTypes = {
+  alineacionLocal: PropTypes.arrayOf(
+    PropTypes.shape({
+      player: PropTypes.shape({
+        grid: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+    })
+  ).isRequired,
+  alineacionVisitante: PropTypes.arrayOf(
+    PropTypes.shape({
+      player: PropTypes.shape({
+        grid: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+    })
+  ).isRequired,
+  alineacionNumeroL: PropTypes.arrayOf(
+    PropTypes.shape({
+      player: PropTypes.shape({
+        grid: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+    })
+  ).isRequired,
+  alineacionNumeroV: PropTypes.arrayOf(
+    PropTypes.shape({
+      player: PropTypes.shape({
+        grid: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+      }).isRequired,
+    })
+  ).isRequired,
+};
 
 export default Alineacion;

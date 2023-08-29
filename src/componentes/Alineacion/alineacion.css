@@ -1,3 +1,54 @@
-.campo{
-  background-color: rgb(1, 163, 1);
+
+.campo {
+
+  height: 250px;
+  background-color: #34CD5F;
+  border-radius: 20px;
+  padding: 10px;
+  
+}  
+
+.campoLocal{
+
+  display: grid;
+  gap: 15px;
+  margin: 0 auto;
+  transform: scaleX(-1);
 }
+
+
+.campoVisitante{
+
+  display: grid;
+  gap: 15px;
+  margin: 0 auto;
+}
+
+.volterarAlineacion{
+  transform: translateX(-1);
+}
+
+
+
+
+.jugador-local {
+  display: flex;
+  background-color: red;
+  width: 15px;
+  height: 15px;
+  border-radius: 100%;
+
+  position: relative;
+}
+
+.jugador-visitante {
+  display: flex;
+  background-color: blue;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  position: relative;
+}
+
+
+

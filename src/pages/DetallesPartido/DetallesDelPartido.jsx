@@ -15,6 +15,8 @@ function DetallesDelPartido() {
   const [partidoResultado, setPartidoResultado] = useState(null);
   const [alineacionLocal, setAlineacionLocal] = useState(null);
   const [alineacionVisitante, setAlineacionVisitante] = useState(null);
+  const [alineacionNumeroL, setAlineacionNumeroL] = useState(null);
+  const [alineacionNumeroV, setAlineacionNumeroV] = useState(null);
 
   useEffect(() => {
     // LLAMADA AL RESULTADO DEL PARTIDO
@@ -29,6 +31,8 @@ function DetallesDelPartido() {
         setPartidoResultado(partido);
         setAlineacionLocal(partido.lineups[0].startXI)
         setAlineacionVisitante(partido.lineups[1].startXI)
+        setAlineacionNumeroL(partido.lineups[0].formation)
+        setAlineacionNumeroV(partido.lineups[1].formation)
       })
       .catch((error) => {
         console.log("ERROR AL OBTENER EL PARTIDO", error);
@@ -138,6 +142,8 @@ function DetallesDelPartido() {
               <Alineacion
               alineacionLocal={alineacionLocal}
               alineacionVisitante={alineacionVisitante}
+              alineacionNumeroL={alineacionNumeroL}
+              alineacionNumeroV={alineacionNumeroV}
               />
               </div>
 
