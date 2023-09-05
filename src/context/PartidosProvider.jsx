@@ -2,9 +2,39 @@ import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
 
+//FIREBASE
+import {auth} from "../firebase/firebaseConfig"
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
+
+
 const PartidosContext = createContext();
 
 const PartidosProvider = ({ children }) => {
+
+  // FIREBASE 
+
+  const register = async (email, password) => {
+    const response = await createUserWithEmailAndPassword(auth,email, password);
+    console.log(response);
+  }
+
+  const login = async (email, password) => {
+    const response = await signInWithEmailAndPassword(auth, email, password);
+    console.log(response);
+  }
+
+  const loginGoogle = async () => {
+    const responseGoogle = new GoogleAuthProvider();
+    return await signInWithPopup(auth, responseGoogle);
+  }
+
+  const logout = async () => {
+    const response = await signOut();
+    console.log(response);
+  }
+
+  // TERMINA FUNCIONES DE FIREBASE 
+
   const [partidos, setPartidos] = useState([]);
 
   const [seleccionLeague, setSeleccionLeague] = useState(39);
@@ -46,6 +76,11 @@ const PartidosProvider = ({ children }) => {
         partidos,
         SeleccionDeLiga,
         loading,
+        register,
+        login,
+        loginGoogle,
+        logout,
+        auth
       }}
     >
       {children}
