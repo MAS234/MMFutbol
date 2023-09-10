@@ -34,6 +34,17 @@ const PartidosProvider = ({ children }) => {
     console.log(response);
   }
 
+  const registrarseGoogle = async () => {
+    try{
+      const responseGoogle = new GoogleAuthProvider();
+      await signInWithPopup(auth, responseGoogle);
+      alert("Registrado correctamente con google")
+    }
+    catch(error){
+      alert("Ocurrio un error al registrarse", error)
+    }
+  }
+
 
 
   // TERMINA FUNCIONES DE FIREBASE 
@@ -83,8 +94,7 @@ const PartidosProvider = ({ children }) => {
         login,
         loginGoogle,
         logout,
-        GoogleAuthProvider,
-        signInWithPopup,
+        registrarseGoogle,
         auth
       }}
     >
