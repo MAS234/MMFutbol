@@ -8,7 +8,6 @@ import { useNavigate } from "react-router-dom";
 import {auth} from "../firebase/firebaseConfig"
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/auth";
 
-
 const PartidosContext = createContext();
 
 const PartidosProvider = ({ children }) => {
