@@ -41,7 +41,7 @@ const PartidosProvider = ({ children }) => {
       alert("Registrado correctamente con google")
     }
     catch(error){
-      alert("Ocurrio un error al registrarse", error)
+      console.log("Ocurrio un error al registrarse", error)
     }
   }
 
