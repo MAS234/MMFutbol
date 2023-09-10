@@ -1,6 +1,8 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
+
 
 //FIREBASE
 import {auth} from "../firebase/firebaseConfig"
@@ -10,6 +12,8 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, GoogleAuthP
 const PartidosContext = createContext();
 
 const PartidosProvider = ({ children }) => {
+
+  const navigate = useNavigate();
 
   // FIREBASE 
 
@@ -37,6 +41,7 @@ const PartidosProvider = ({ children }) => {
     try{
       const responseGoogle = new GoogleAuthProvider();
       await signInWithPopup(auth, responseGoogle);
+      navigate("/inicio")
       alert("Registrado correctamente con google")
     }
     catch(error){
