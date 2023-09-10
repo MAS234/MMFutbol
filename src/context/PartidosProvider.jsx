@@ -1,7 +1,6 @@
 import { createContext, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
 
 
 //FIREBASE
@@ -12,7 +11,6 @@ const PartidosContext = createContext();
 
 const PartidosProvider = ({ children }) => {
 
-  const navigate = useNavigate();
 
   // FIREBASE 
 
@@ -36,17 +34,7 @@ const PartidosProvider = ({ children }) => {
     console.log(response);
   }
 
-  const registrarseGoogle = async () => {
-    try{
-      const responseGoogle = new GoogleAuthProvider();
-      await signInWithPopup(auth, responseGoogle);
-      navigate("/inicio")
-      alert("Registrado correctamente con google")
-    }
-    catch(error){
-      alert("Ocurrio un error al registrarse", error)
-    }
-  }
+
 
   // TERMINA FUNCIONES DE FIREBASE 
 
@@ -95,7 +83,8 @@ const PartidosProvider = ({ children }) => {
         login,
         loginGoogle,
         logout,
-        registrarseGoogle,
+        GoogleAuthProvider,
+        signInWithPopup,
         auth
       }}
     >

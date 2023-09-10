@@ -4,11 +4,10 @@ import { useNavigate } from "react-router-dom";
 import google from "../../assets/Google.png"
 
 
-
 function Registrarse() {
 
-  const {register, registrarseGoogle} = useContext(PartidosContext);
   const navigate = useNavigate();
+  const {register, auth, GoogleAuthProvider, signInWithPopup} = useContext(PartidosContext);
 
   // STATES
   const [nombre, setNombre] = useState("");  
@@ -28,6 +27,19 @@ function Registrarse() {
       console.error("Error al registrar:", error);
     }
   };
+
+  // REGISTRARSE CON GOOGLE 
+  const registrarseGoogle = async () => {
+    try{
+      const responseGoogle = new GoogleAuthProvider();
+      await signInWithPopup(auth, responseGoogle);
+      alert("Registrado correctamente con google")
+      navigate("/inicio");
+    }
+    catch(error){
+      alert("Ocurrio un error al registrarse", error)
+    }
+  }
 
     // VALIDACIONES 
     const validarFormulario =  (e) => {
