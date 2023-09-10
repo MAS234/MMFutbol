@@ -1,11 +1,12 @@
 import { useNavigate } from "react-router-dom";
 import { useState, useContext } from "react";
 import PartidosContext from "../../context/PartidosProvider";
+import google from "../../assets/Google.png"
 
 
 function Logueo() {
   const navigate = useNavigate();
-  const {login} = useContext(PartidosContext);
+  const {login, loginGoogle} = useContext(PartidosContext);
 
   //   STATES
   const [email, setEmail] = useState("");
@@ -16,6 +17,17 @@ function Logueo() {
   const handleLogin = async () => {
     try {
         await login(email, password);
+        alert("Logueado");
+        navigate("/inicio");
+      } catch (error) {
+        console.error("Error al registrar:", error);
+        alert("No se encontro el usuario(ocurrio un error)");
+      }
+  }
+
+  const handleLoginGoogle = async () => {
+    try {
+        await loginGoogle();
         alert("Logueado");
         navigate("/inicio");
       } catch (error) {
@@ -84,12 +96,24 @@ function Logueo() {
         </form>
       </div>
 
+      <div className="flex items-center justify-evenly gap-2">
       <div
-        className="cardRyL m-5 w-80 text-white text-center p-3 text-xl  cursor-pointer"
+        className="cardRyL  w-32 text-white text-center p-3 text-xl  cursor-pointer"
         onClick={() => navigate("/")}
       >
         Volver
       </div>
+
+      <div
+        className="cardRyL flex justify-center items-center gap-3  w-36 text-white text-center p-3 text-xl  cursor-pointer"
+        onClick={() => handleLoginGoogle()}
+      >
+        <img src={google } alt="google" className="w-6" />
+        Google
+      </div>
+      </div>
+
+
     </div>
   );
 }

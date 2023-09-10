@@ -1,11 +1,13 @@
 import { useState, useContext } from "react";
 import PartidosContext from "../../context/PartidosProvider";
 import { useNavigate } from "react-router-dom";
+import google from "../../assets/Google.png"
+
 
 
 function Registrarse() {
 
-  const {register} = useContext(PartidosContext);
+  const {register, registrarseGoogle} = useContext(PartidosContext);
   const navigate = useNavigate();
 
   // STATES
@@ -115,8 +117,21 @@ function Registrarse() {
         
       </div>
 
-      <div className="cardRyL m-5 w-80 text-white text-center p-3 text-xl  cursor-pointer" onClick={() => navigate("/")}>
+      <div className="m-5 flex items-center justify-evenly gap-2">
+      <div
+        className="cardRyL  w-32 text-white text-center p-3 text-xl  cursor-pointer"
+        onClick={() => navigate("/")}
+      >
         Volver
+      </div>
+
+      <div
+        className="cardRyL flex justify-center items-center gap-3  w-36 text-white text-center p-3 text-xl  cursor-pointer"
+        onClick={() => registrarseGoogle()}
+      >
+        <img src={google } alt="google" className="w-6" />
+        Google
+      </div>
       </div>
 
     </div>
