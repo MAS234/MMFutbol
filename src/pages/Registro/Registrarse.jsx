@@ -40,7 +40,6 @@ function Registrarse() {
     }
   }
 
-
     // VALIDACIONES 
     const validarFormulario =  (e) => {
       e.preventDefault();

@@ -35,9 +35,6 @@ const PartidosProvider = ({ children }) => {
   }
 
 
-
-
-
   // TERMINA FUNCIONES DE FIREBASE 
 
   const [partidos, setPartidos] = useState([]);
