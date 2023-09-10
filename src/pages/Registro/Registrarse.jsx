@@ -7,7 +7,7 @@ import google from "../../assets/Google.png"
 function Registrarse() {
 
   const navigate = useNavigate();
-  const {register, registrarseGoogle} = useContext(PartidosContext);
+  const {register, GoogleAuthProvider, signInWithPopup, auth} = useContext(PartidosContext);
 
   // STATES
   const [nombre, setNombre] = useState("");  
@@ -27,6 +27,18 @@ function Registrarse() {
       console.error("Error al registrar:", error);
     }
   };
+
+  const registrarseGoogle = async () => {
+    try{
+      const responseGoogle = new GoogleAuthProvider();
+      await signInWithPopup(auth, responseGoogle);
+      alert("Registrado correctamente con google")
+      navigate("/inicio");
+    }
+    catch(error){
+      console.log("Ocurrio un error al registrarse", error)
+    }
+  }
 
 
     // VALIDACIONES 

@@ -34,16 +34,7 @@ const PartidosProvider = ({ children }) => {
     console.log(response);
   }
 
-  const registrarseGoogle = async () => {
-    try{
-      const responseGoogle = new GoogleAuthProvider();
-      await signInWithPopup(auth, responseGoogle);
-      alert("Registrado correctamente con google")
-    }
-    catch(error){
-      console.log("Ocurrio un error al registrarse", error)
-    }
-  }
+
 
 
 
@@ -94,7 +85,8 @@ const PartidosProvider = ({ children }) => {
         login,
         loginGoogle,
         logout,
-        registrarseGoogle,
+        signInWithPopup,
+        GoogleAuthProvider,
         auth
       }}
     >
